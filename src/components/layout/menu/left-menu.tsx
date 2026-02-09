@@ -11,7 +11,7 @@ import { SecondaryItem } from "@/components/layout/menu/secondary-item";
 import { DEFAULTS } from "@/config";
 import { cn, isPathMatch } from "@/lib/utils";
 import { leftMenuBottomItems, leftMenuItems } from "@/menu-items";
-import { MenuItem, MenuShowState, MenuType } from "@/types/types";
+import { MenuItem, MenuShowState, MenuType, Viewer } from "@/types/types";
 
 export type OpenedAccordion = { indent: number; id: string };
 
@@ -205,7 +205,7 @@ export default function LeftMenu() {
               >
                 {leftMenuItems
                   .filter((x) => !x.hideInMenu)
-                  .filter((x) => !x.canAccess || (user?.role === 'admin' && x.canAccess.includes('ADMIN')))
+                  .filter((x) => !x.canAccess || (user?.role === 'admin' && x.canAccess.includes(Viewer.ADMIN)))
                   .map((item) =>
                     leftMenuType === MenuType.SingleLayer ? (
                       <SecondaryItem
